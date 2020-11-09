@@ -14,4 +14,24 @@
         <tag>Markdown语法</tag>
       </tags>
   </entry>
+  <entry>
+    <title>Makefile Tutorial</title>
+    <url>/Makefile-Tutorial/</url>
+    <content><![CDATA[<h3 id="一，显式规则"><a href="#一，显式规则" class="headerlink" title="一，显式规则"></a>一，显式规则</h3><ol>
+<li>目标文件:依赖文件<br>&emsp;指令文件<br>example:<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">a. hello.i : hello.c</span><br><span class="line">	gcc -E hello.c -o hello.i	预处理</span><br><span class="line">b. hello.S : hello.i</span><br><span class="line">	gcc -S hello.i -o hello.S	编译</span><br><span class="line">c. hello.o : hello.S</span><br><span class="line">	gcc -c hello.S -o hello.o	汇编</span><br><span class="line">d. hello : hello.o</span><br><span class="line">	gcc hello.o -o hello	链接</span><br></pre></td></tr></table></figure></li>
+<li>第一个目标文件是最终目标<br>所以上述的过程应该反过来，正确书写方式是:<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">a. hello : hello.o</span><br><span class="line">	gcc hello.o -o hello	链接</span><br><span class="line">b. hello.o : hello.S</span><br><span class="line">	gcc -c hello.S -o hello.o	汇编</span><br><span class="line">c. hello.S : hello.i</span><br><span class="line">	gcc -S hello.i -o hello.S	编译</span><br><span class="line">d. hello.i : hello.c</span><br><span class="line">	gcc -E hello.c -o hello.i	预处理</span><br></pre></td></tr></table></figure></li>
+<li>伪目标<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">.PHONY:</span><br><span class="line">clear:</span><br><span class="line">	rm -rf hello.o hello.S hello.i</span><br><span class="line">clearall:</span><br><span class="line">	rm -rf hello.o hello.S hello.i hello</span><br></pre></td></tr></table></figure>
+伪目标通常用来做一些清理或删除文件。其中clear和clearall名字可以任意更换，为了便于理解和记忆，要用一些有意义的词。</li>
+</ol>
+]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>Makefile</tag>
+        <tag>Linux</tag>
+        <tag>gcc</tag>
+        <tag>g++</tag>
+      </tags>
+  </entry>
 </search>
