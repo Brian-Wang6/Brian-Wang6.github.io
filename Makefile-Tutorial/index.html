@@ -28,10 +28,10 @@
 <meta property="og:description" content="有一篇总结的非常全面的文章：Makefile运用一，显式规则 目标文件:依赖文件&amp;emsp;指令文件example:12345678a. hello.i : hello.c	gcc -E hello.c -o hello.i	预处理b. hello.S : hello.i	gcc -S hello.i -o hello.S	编译c. hello.o : hello.S	gcc -c hello.S">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-11-09T14:29:39.000Z">
-<meta property="article:modified_time" content="2020-11-10T14:43:16.399Z">
+<meta property="article:modified_time" content="2020-11-10T14:51:09.917Z">
 <meta property="article:author" content="Brian Wang">
-<meta property="article:tag" content="Makefile">
 <meta property="article:tag" content="Linux">
+<meta property="article:tag" content="Makefile">
 <meta property="article:tag" content="gcc">
 <meta property="article:tag" content="g++">
 <meta name="twitter:card" content="summary">
@@ -227,7 +227,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-11-10 22:43:16" itemprop="dateModified" datetime="2020-11-10T22:43:16+08:00">2020-11-10</time>
+                <time title="Modified: 2020-11-10 22:51:09" itemprop="dateModified" datetime="2020-11-10T22:51:09+08:00">2020-11-10</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -252,7 +252,11 @@
       
         <h2 id="有一篇总结的非常全面的文章：Makefile运用"><a href="#有一篇总结的非常全面的文章：Makefile运用" class="headerlink" title="有一篇总结的非常全面的文章：Makefile运用"></a>有一篇总结的非常全面的文章：<a target="_blank" rel="noopener" href="https://seisman.github.io/how-to-write-makefile/introduction.html">Makefile运用</a></h2><h3 id="一，显式规则"><a href="#一，显式规则" class="headerlink" title="一，显式规则"></a>一，显式规则</h3><ol>
 <li>目标文件:依赖文件<br>&emsp;指令文件<br>example:<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">a. hello.i : hello.c</span><br><span class="line">	gcc -E hello.c -o hello.i	预处理</span><br><span class="line">b. hello.S : hello.i</span><br><span class="line">	gcc -S hello.i -o hello.S	编译</span><br><span class="line">c. hello.o : hello.S</span><br><span class="line">	gcc -c hello.S -o hello.o	汇编</span><br><span class="line">d. hello : hello.o</span><br><span class="line">	gcc hello.o -o hello	链接</span><br></pre></td></tr></table></figure>
-<a id="more"></a></li>
+
+</li>
+</ol>
+<a id="more"></a>
+<ol start="2">
 <li>第一个目标文件是最终目标<br>所以上述的过程应该反过来，正确书写方式是:<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">a. hello : hello.o</span><br><span class="line">	gcc hello.o -o hello	链接</span><br><span class="line">b. hello.o : hello.S</span><br><span class="line">	gcc -c hello.S -o hello.o	汇编</span><br><span class="line">c. hello.S : hello.i</span><br><span class="line">	gcc -S hello.i -o hello.S	编译</span><br><span class="line">d. hello.i : hello.c</span><br><span class="line">	gcc -E hello.c -o hello.i	预处理</span><br></pre></td></tr></table></figure></li>
 <li>伪目标<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">.PHONY:</span><br><span class="line">clear:</span><br><span class="line">	rm -rf hello.o hello.S hello.i</span><br><span class="line">clearall:</span><br><span class="line">	rm -rf hello.o hello.S hello.i hello</span><br></pre></td></tr></table></figure>
 伪目标通常用来做一些清理或删除文件。其中clear和clearall名字可以任意更换，为了便于理解和记忆，要用一些有意义的词。<br>举例用circle.c, circle.h, cube.c, cube.h, main.c, main.h 生成可执行文件test，省去中间过程。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">test: circle.o cube.o main.o</span><br><span class="line">	gcc circle.o cube.o main.o -o test</span><br><span class="line">circle.o: circle.c</span><br><span class="line">	gcc -c circle.c -o circle.o</span><br><span class="line">cube.o: cube.c</span><br><span class="line">	gcc -c cube.c -o cube.o</span><br><span class="line">main.o: main.c</span><br><span class="line">	gcc -c main.c -o main.o</span><br><span class="line">.PHONY:</span><br><span class="line">clearall:</span><br><span class="line">	rm -rf circle.o cube.o main.o test</span><br><span class="line">clear:</span><br><span class="line">	rm -rf circle.o cube.o main.o</span><br></pre></td></tr></table></figure>
@@ -270,8 +274,8 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/Makefile/" rel="tag"># Makefile</a>
               <a href="/tags/Linux/" rel="tag"># Linux</a>
+              <a href="/tags/Makefile/" rel="tag"># Makefile</a>
               <a href="/tags/gcc/" rel="tag"># gcc</a>
               <a href="/tags/g/" rel="tag"># g++</a>
           </div>
