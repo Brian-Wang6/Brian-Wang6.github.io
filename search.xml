@@ -1,28 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Markdown Syntax</title>
-    <url>/Markdown-Syntax/</url>
-    <content><![CDATA[<h3 id="Basic-Usage"><a href="#Basic-Usage" class="headerlink" title="Basic Usage"></a>Basic Usage</h3><p>Since I will start my blog from today, markdown syntax is quite important to draft blogs. I searched online and found that there is a blog that indicate the basic usage of the syntax and it’s easy to understand. The link is as below:</p>
-<p><strong><a href="https://www.jianshu.com/p/191d1e21f7ed">Basic Usage</a></strong></p>
-]]></content>
-      <categories>
-        <category>Common Sense</category>
-      </categories>
-      <tags>
-        <tag>Markdown Syntax</tag>
-        <tag>Markdown语法</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Makefile Tutorial</title>
     <url>/Makefile-Tutorial/</url>
-    <content><![CDATA[<h3 id="一，显式规则"><a href="#一，显式规则" class="headerlink" title="一，显式规则"></a>一，显式规则</h3><ol>
-<li>目标文件:依赖文件<br>&emsp;指令文件<br>example:<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">a. hello.i : hello.c</span><br><span class="line">	gcc -E hello.c -o hello.i	预处理</span><br><span class="line">b. hello.S : hello.i</span><br><span class="line">	gcc -S hello.i -o hello.S	编译</span><br><span class="line">c. hello.o : hello.S</span><br><span class="line">	gcc -c hello.S -o hello.o	汇编</span><br><span class="line">d. hello : hello.o</span><br><span class="line">	gcc hello.o -o hello	链接</span><br></pre></td></tr></table></figure></li>
+    <content><![CDATA[<h2 id="有一篇总结的非常全面的文章：Makefile运用"><a href="#有一篇总结的非常全面的文章：Makefile运用" class="headerlink" title="有一篇总结的非常全面的文章：Makefile运用"></a>有一篇总结的非常全面的文章：<a href="https://seisman.github.io/how-to-write-makefile/introduction.html">Makefile运用</a></h2><h3 id="一，显式规则"><a href="#一，显式规则" class="headerlink" title="一，显式规则"></a>一，显式规则</h3><ol>
+<li>目标文件:依赖文件<br>&emsp;指令文件<br>example:<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">a. hello.i : hello.c</span><br><span class="line">	gcc -E hello.c -o hello.i	预处理</span><br><span class="line">b. hello.S : hello.i</span><br><span class="line">	gcc -S hello.i -o hello.S	编译</span><br><span class="line">c. hello.o : hello.S</span><br><span class="line">	gcc -c hello.S -o hello.o	汇编</span><br><span class="line">d. hello : hello.o</span><br><span class="line">	gcc hello.o -o hello	链接</span><br></pre></td></tr></table></figure>
+<a id="more"></a></li>
 <li>第一个目标文件是最终目标<br>所以上述的过程应该反过来，正确书写方式是:<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">a. hello : hello.o</span><br><span class="line">	gcc hello.o -o hello	链接</span><br><span class="line">b. hello.o : hello.S</span><br><span class="line">	gcc -c hello.S -o hello.o	汇编</span><br><span class="line">c. hello.S : hello.i</span><br><span class="line">	gcc -S hello.i -o hello.S	编译</span><br><span class="line">d. hello.i : hello.c</span><br><span class="line">	gcc -E hello.c -o hello.i	预处理</span><br></pre></td></tr></table></figure></li>
 <li>伪目标<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">.PHONY:</span><br><span class="line">clear:</span><br><span class="line">	rm -rf hello.o hello.S hello.i</span><br><span class="line">clearall:</span><br><span class="line">	rm -rf hello.o hello.S hello.i hello</span><br></pre></td></tr></table></figure>
-伪目标通常用来做一些清理或删除文件。其中clear和clearall名字可以任意更换，为了便于理解和记忆，要用一些有意义的词。</li>
+伪目标通常用来做一些清理或删除文件。其中clear和clearall名字可以任意更换，为了便于理解和记忆，要用一些有意义的词。<br>举例用circle.c, circle.h, cube.c, cube.h, main.c, main.h 生成可执行文件test，省去中间过程。<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">test: circle.o cube.o main.o</span><br><span class="line">	gcc circle.o cube.o main.o -o test</span><br><span class="line">circle.o: circle.c</span><br><span class="line">	gcc -c circle.c -o circle.o</span><br><span class="line">cube.o: cube.c</span><br><span class="line">	gcc -c cube.c -o cube.o</span><br><span class="line">main.o: main.c</span><br><span class="line">	gcc -c main.c -o main.o</span><br><span class="line">.PHONY:</span><br><span class="line">clearall:</span><br><span class="line">	rm -rf circle.o cube.o main.o test</span><br><span class="line">clear:</span><br><span class="line">	rm -rf circle.o cube.o main.o</span><br></pre></td></tr></table></figure>
+
+</li>
 </ol>
+<h3 id="二，变量"><a href="#二，变量" class="headerlink" title="二，变量"></a>二，变量</h3><p>变量只能是strings。替换：<code>=</code>, 追加：<code>+=</code>, 恒等于：<code>:=</code>。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">TAR &#x3D; test</span><br><span class="line">OBJ &#x3D; circle.o cube.o main.o</span><br><span class="line">CC :&#x3D; gcc</span><br><span class="line">RM :&#x3D; rm -rf</span><br><span class="line">$(TAR): $(OBJ)</span><br><span class="line">	$(CC) $(OBJ) -o $(TAR)</span><br><span class="line">circle.o: circle.c</span><br><span class="line">	$(CC) -c circle.c -o circle.o</span><br><span class="line">cube.o: cube.c</span><br><span class="line">	$(CC) -c cube.c -o cube.o</span><br><span class="line">main.o: main.c</span><br><span class="line">	$(CC) -c main.c -o main.o</span><br><span class="line">.PHONY:</span><br><span class="line">clearall:</span><br><span class="line">	$(RM) circle.o cube.o main.o test</span><br><span class="line">clear:</span><br><span class="line">	$(RM) circle.o cube.o main.o</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
         <category>Linux</category>
@@ -32,6 +23,39 @@
         <tag>Linux</tag>
         <tag>gcc</tag>
         <tag>g++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Linuxx命令</title>
+    <url>/Linuxx%E5%91%BD%E4%BB%A4/</url>
+    <content><![CDATA[<ol>
+<li>echo<br>用来将字符串输出到终端上，通常在shell脚本和批处理中使用，以将状态信息输出到屏幕或文件中。<br><code>echo it is a test</code>输出为<code>it is a test</code>。</li>
+<li>touch<br>Linux touch命令用于修改文件或者目录的时间属性，包括存取时间和更改时间。若文件不存在，系统会建立一个新的文件。<br>ls -l 可以显示档案的时间记录。<br><code>touch testfile    #修改文件的时间属性为当前系统时间，如果文件不存在则生成文件</code></li>
+</ol>
+]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+        <tag>command</tag>
+        <tag>shell</tag>
+        <tag>命令</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Markdown Syntax</title>
+    <url>/Markdown-Syntax/</url>
+    <content><![CDATA[<h3 id="Basic-Usage"><a href="#Basic-Usage" class="headerlink" title="Basic Usage"></a>Basic Usage</h3><p>Since I will start my blog from today, markdown syntax is quite important to draft blogs. I searched online and found that there is a blog that indicate the basic usage of the syntax and it’s easy to understand. The link is as below:</p>
+<p><strong><a href="https://www.jianshu.com/p/191d1e21f7ed">Basic Usage</a></strong></p>
+<h3 id="怎么打出tab键，空行和空格键"><a href="#怎么打出tab键，空行和空格键" class="headerlink" title="怎么打出tab键，空行和空格键"></a>怎么打出tab键，空行和空格键</h3><p>空格: <code>&amp;nbsp;</code>    tab: <code>&amp;emsp;</code><br>示例:<br>你&nbsp;好&emsp;啊<br>在代码块中，直接用tab键即可。</p>
+]]></content>
+      <categories>
+        <category>Common Sense</category>
+      </categories>
+      <tags>
+        <tag>Markdown Syntax</tag>
+        <tag>Markdown语法</tag>
       </tags>
   </entry>
 </search>
