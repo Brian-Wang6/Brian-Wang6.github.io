@@ -28,7 +28,7 @@
 <meta property="og:description" content="按位与运算 (AND): &amp;参加运算的两个数据，按二进制位进行与运算。当相应位都是1时，结果才为1。例如：3&amp;5&amp;emsp;即 0000 0011 &amp; 0000 0101 &#x3D; 0000 0001 因此， 结果为1。需要注意的是，负数按补码形式参加按位与运算。与运算的用途：  清零。如果想将一个单元清零，只要与一个各位都为零的数相与，结果都为零。 取一个数值X的指定位另取一个">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-11-17T13:10:12.000Z">
-<meta property="article:modified_time" content="2020-11-17T14:39:07.922Z">
+<meta property="article:modified_time" content="2020-11-17T14:43:19.373Z">
 <meta property="article:author" content="Brian Wang">
 <meta property="article:tag" content="Bitwise Operation">
 <meta property="article:tag" content="按位运算">
@@ -220,7 +220,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2020-11-17 21:10:12 / Modified: 22:39:07" itemprop="dateCreated datePublished" datetime="2020-11-17T21:10:12+08:00">2020-11-17</time>
+              <time title="Created: 2020-11-17 21:10:12 / Modified: 22:43:19" itemprop="dateCreated datePublished" datetime="2020-11-17T21:10:12+08:00">2020-11-17</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -261,7 +261,7 @@
 </ol>
 <h3 id="按位取反运算-NOT"><a href="#按位取反运算-NOT" class="headerlink" title="按位取反运算 (NOT): ~"></a>按位取反运算 (NOT): ~</h3><p>参加运算的一个数据，按二进制位进行“取反”运算。<br>运算规则：~1=0；   ~0=1；即：对一个二进制数按位取反，即将0变1，1变0。<br>按位取反的用途：</p>
 <ol>
-<li>使一个数的最低位为零，可以表示为：a&amp;<del>1。</del>1的值为1111111111111110，再按“与”运算，最低位一定为0。因为“~”运算符的优先级比算术运算符、关系运算符、逻辑运算符和其他运算符都高。</li>
+<li>使一个数的最低位为零，可以表示为：a&amp;~1。~1的值为1111111111111110，再按“与”运算，最低位一定为0。因为“~”运算符的优先级比算术运算符、关系运算符、逻辑运算符和其他运算符都高。</li>
 </ol>
 <h3 id="移位运算-Bit-Shift-lt-lt-gt-gt"><a href="#移位运算-Bit-Shift-lt-lt-gt-gt" class="headerlink" title="移位运算 (Bit Shift): &lt;&lt;, &gt;&gt;"></a>移位运算 (Bit Shift): &lt;&lt;, &gt;&gt;</h3><ol>
 <li>左移运算符 (&lt;&lt;)<br>将一个运算对象的各二进制位全部左移若干位（左边的二进制位丢弃，右边补0）。<br>例：a = a &lt;&lt; 2 将a的二进制位左移2位，右补0，<br>左移1位后a = a * 2;<br>若左移时舍弃的高位不包含1，则每左移一位，相当于该数乘以2。</li>
