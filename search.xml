@@ -19,23 +19,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Markdown Syntax</title>
-    <url>/Markdown-Syntax/</url>
-    <content><![CDATA[<h3 id="Basic-Usage"><a href="#Basic-Usage" class="headerlink" title="Basic Usage"></a>Basic Usage</h3><p>Since I will start my blog from today, markdown syntax is quite important to draft blogs. I searched online and found that there is a blog that indicate the basic usage of the syntax and it’s easy to understand. The link is as below:</p>
-<p><strong><a href="https://www.jianshu.com/p/191d1e21f7ed">Basic Usage</a></strong></p>
-<a id="more"></a>
-
-<h3 id="怎么打出tab键，空行和空格键"><a href="#怎么打出tab键，空行和空格键" class="headerlink" title="怎么打出tab键，空行和空格键"></a>怎么打出tab键，空行和空格键</h3><p>空格: <code>&amp;nbsp;</code>    tab: <code>&amp;emsp;</code><br>示例:<br>你&nbsp;好&emsp;啊<br>在代码块中，直接用tab键即可。</p>
-]]></content>
-      <categories>
-        <category>Common Sense</category>
-      </categories>
-      <tags>
-        <tag>Markdown Syntax</tag>
-        <tag>Markdown语法</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Bitwise Operation (按位运算)</title>
     <url>/Bitwise-Operation-%E6%8C%89%E4%BD%8D%E8%BF%90%E7%AE%97/</url>
     <content><![CDATA[<h3 id="按位与运算-AND-amp"><a href="#按位与运算-AND-amp" class="headerlink" title="按位与运算 (AND): &amp;"></a>按位与运算 (AND): &amp;</h3><p>参加运算的两个数据，按二进制位进行与运算。当相应位都是1时，结果才为1。<br>例如：3&amp;5<br>&emsp;即 0000 0011 &amp; 0000 0101 = 0000 0001 因此， 结果为1。<br>需要注意的是，负数按补码形式参加按位与运算。<br>与运算的用途：</p>
@@ -73,6 +56,23 @@
       </tags>
   </entry>
   <entry>
+    <title>Markdown Syntax</title>
+    <url>/Markdown-Syntax/</url>
+    <content><![CDATA[<h3 id="Basic-Usage"><a href="#Basic-Usage" class="headerlink" title="Basic Usage"></a>Basic Usage</h3><p>Since I will start my blog from today, markdown syntax is quite important to draft blogs. I searched online and found that there is a blog that indicate the basic usage of the syntax and it’s easy to understand. The link is as below:</p>
+<p><strong><a href="https://www.jianshu.com/p/191d1e21f7ed">Basic Usage</a></strong></p>
+<a id="more"></a>
+
+<h3 id="怎么打出tab键，空行和空格键"><a href="#怎么打出tab键，空行和空格键" class="headerlink" title="怎么打出tab键，空行和空格键"></a>怎么打出tab键，空行和空格键</h3><p>空格: <code>&amp;nbsp;</code>    tab: <code>&amp;emsp;</code><br>示例:<br>你&nbsp;好&emsp;啊<br>在代码块中，直接用tab键即可。</p>
+]]></content>
+      <categories>
+        <category>Common Sense</category>
+      </categories>
+      <tags>
+        <tag>Markdown Syntax</tag>
+        <tag>Markdown语法</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Makefile Tutorial</title>
     <url>/Makefile-Tutorial/</url>
     <content><![CDATA[<h2 id="有一篇总结的非常全面的文章：Makefile运用"><a href="#有一篇总结的非常全面的文章：Makefile运用" class="headerlink" title="有一篇总结的非常全面的文章：Makefile运用"></a>有一篇总结的非常全面的文章：<a href="https://seisman.github.io/how-to-write-makefile/introduction.html">Makefile运用</a></h2><h3 id="一，显式规则"><a href="#一，显式规则" class="headerlink" title="一，显式规则"></a>一，显式规则</h3><ol>
@@ -99,6 +99,28 @@
         <tag>Makefile</tag>
         <tag>gcc</tag>
         <tag>g++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>练习2.6 编写一个函数setbits(x, p ,n, y)，该函数返回对x执行下列操作后的结果值: 将x中从第p位开始的n个(二进制)位设置为y中最右边n位的值，x的其余各位保持不变。</title>
+    <url>/%E7%BB%83%E4%B9%A02-6-%E7%BC%96%E5%86%99%E4%B8%80%E4%B8%AA%E5%87%BD%E6%95%B0setbits-x-p-n-y-%EF%BC%8C%E8%AF%A5%E5%87%BD%E6%95%B0%E8%BF%94%E5%9B%9E%E5%AF%B9x%E6%89%A7%E8%A1%8C%E4%B8%8B%E5%88%97%E6%93%8D%E4%BD%9C%E5%90%8E%E7%9A%84%E7%BB%93%E6%9E%9C%E5%80%BC-%E5%B0%86x%E4%B8%AD%E4%BB%8E%E7%AC%ACp%E4%BD%8D%E5%BC%80%E5%A7%8B%E7%9A%84n%E4%B8%AA-%E4%BA%8C%E8%BF%9B%E5%88%B6-%E4%BD%8D%E8%AE%BE%E7%BD%AE%E4%B8%BAy%E4%B8%AD%E6%9C%80%E5%8F%B3%E8%BE%B9n%E4%BD%8D%E7%9A%84%E5%80%BC%EF%BC%8Cx%E7%9A%84%E5%85%B6%E4%BD%99%E5%90%84%E4%BD%8D%E4%BF%9D%E6%8C%81%E4%B8%8D%E5%8F%98%E3%80%82/</url>
+    <content><![CDATA[<p>题目分析：<br>X: xxx…xnnnx…xxx<br>Y: yy…………..ynnn<br>要变成这样的效果，我们需要对x中n位清零，把y中最右边n位以外的位都清零并左移到第p位处，然后进行or操作。</p>
+<p>xxx….x000x…xxx | 000… nnn….000</p>
+<a id="more"></a>
+<hr>
+<ol>
+<li>对x中n位清零: 这里想到与运算，x中n位与零相与n位得到0，其余位与1相与（这样可以保持其他位不变）。<br>~（~0&lt;&lt; n）: 得到最低n位为1，其余各位为0的位串信息：000……111。<br>将~（~0&lt;&lt; n）左移(p+1-n) 位得到 000..01110…000，然后取反得到 111…10001111，最后与x相与可得到 xxx…x000x…xxx</li>
+<li>对y处理:<br>运用~（~0&lt;&lt; n）: 得到最低n位为1，其余各位为0的位串信息：000……111。然后与y相与得到 000……0nnn，最后左移(p+1-n) 得到 000…nnn….000</li>
+</ol>
+<p>代码如下:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;* setbits : set n bits of x at position p with bits of y *&#x2F;</span><br><span class="line">unsigned setbits ( unsigned x, int p, int n, unsigned y)</span><br><span class="line">&#123;</span><br><span class="line">	return x &amp;~(~(~0&lt;&lt; n) &lt;&lt; (p + 1 -n)) | (y &amp; ~(~0 &lt;&lt;n )) &lt;&lt; (p + 1 - n);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>C</category>
+      </categories>
+      <tags>
+        <tag>Bitwise Operation</tag>
+        <tag>按位运算</tag>
+        <tag>C</tag>
       </tags>
   </entry>
 </search>
