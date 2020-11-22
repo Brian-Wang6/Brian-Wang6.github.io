@@ -1,24 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Linux命令</title>
-    <url>/Linuxx%E5%91%BD%E4%BB%A4/</url>
-    <content><![CDATA[<ol>
-<li>echo<br>用来将字符串输出到终端上，通常在shell脚本和批处理中使用，以将状态信息输出到屏幕或文件中。<br><code>echo it is a test</code>输出为<code>it is a test</code>。</li>
-<li>touch<br>Linux touch命令用于修改文件或者目录的时间属性，包括存取时间和更改时间。若文件不存在，系统会建立一个新的文件。<br>ls -l 可以显示档案的时间记录。<br><code>touch testfile    #修改文件的时间属性为当前系统时间，如果文件不存在则生成文件</code></li>
-</ol>
-<a id="more"></a>]]></content>
-      <categories>
-        <category>Linux</category>
-      </categories>
-      <tags>
-        <tag>Linux</tag>
-        <tag>command</tag>
-        <tag>shell</tag>
-        <tag>命令</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Bitwise Operation (按位运算)</title>
     <url>/Bitwise-Operation-%E6%8C%89%E4%BD%8D%E8%BF%90%E7%AE%97/</url>
     <content><![CDATA[<h3 id="按位与运算-AND-amp"><a href="#按位与运算-AND-amp" class="headerlink" title="按位与运算 (AND): &amp;"></a>按位与运算 (AND): &amp;</h3><p>参加运算的两个数据，按二进制位进行与运算。当相应位都是1时，结果才为1。<br>例如：3&amp;5<br>&emsp;即 0000 0011 &amp; 0000 0101 = 0000 0001 因此， 结果为1。<br>需要注意的是，负数按补码形式参加按位与运算。<br>与运算的用途：</p>
@@ -56,20 +38,21 @@
       </tags>
   </entry>
   <entry>
-    <title>Markdown Syntax</title>
-    <url>/Markdown-Syntax/</url>
-    <content><![CDATA[<h3 id="Basic-Usage"><a href="#Basic-Usage" class="headerlink" title="Basic Usage"></a>Basic Usage</h3><p>Since I will start my blog from today, markdown syntax is quite important to draft blogs. I searched online and found that there is a blog that indicate the basic usage of the syntax and it’s easy to understand. The link is as below:</p>
-<p><strong><a href="https://www.jianshu.com/p/191d1e21f7ed">Basic Usage</a></strong></p>
-<a id="more"></a>
-
-<h3 id="怎么打出tab键，空行和空格键"><a href="#怎么打出tab键，空行和空格键" class="headerlink" title="怎么打出tab键，空行和空格键"></a>怎么打出tab键，空行和空格键</h3><p>空格: <code>&amp;nbsp;</code>    tab: <code>&amp;emsp;</code><br>示例:<br>你&nbsp;好&emsp;啊<br>在代码块中，直接用tab键即可。</p>
-]]></content>
+    <title>Linux命令</title>
+    <url>/Linuxx%E5%91%BD%E4%BB%A4/</url>
+    <content><![CDATA[<ol>
+<li>echo<br>用来将字符串输出到终端上，通常在shell脚本和批处理中使用，以将状态信息输出到屏幕或文件中。<br><code>echo it is a test</code>输出为<code>it is a test</code>。</li>
+<li>touch<br>Linux touch命令用于修改文件或者目录的时间属性，包括存取时间和更改时间。若文件不存在，系统会建立一个新的文件。<br>ls -l 可以显示档案的时间记录。<br><code>touch testfile    #修改文件的时间属性为当前系统时间，如果文件不存在则生成文件</code></li>
+</ol>
+<a id="more"></a>]]></content>
       <categories>
-        <category>Common Sense</category>
+        <category>Linux</category>
       </categories>
       <tags>
-        <tag>Markdown Syntax</tag>
-        <tag>Markdown语法</tag>
+        <tag>Linux</tag>
+        <tag>command</tag>
+        <tag>shell</tag>
+        <tag>命令</tag>
       </tags>
   </entry>
   <entry>
@@ -99,6 +82,40 @@
         <tag>Makefile</tag>
         <tag>gcc</tag>
         <tag>g++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Markdown Syntax</title>
+    <url>/Markdown-Syntax/</url>
+    <content><![CDATA[<h3 id="Basic-Usage"><a href="#Basic-Usage" class="headerlink" title="Basic Usage"></a>Basic Usage</h3><p>Since I will start my blog from today, markdown syntax is quite important to draft blogs. I searched online and found that there is a blog that indicate the basic usage of the syntax and it’s easy to understand. The link is as below:</p>
+<p><strong><a href="https://www.jianshu.com/p/191d1e21f7ed">Basic Usage</a></strong></p>
+<a id="more"></a>
+
+<h3 id="怎么打出tab键，空行和空格键"><a href="#怎么打出tab键，空行和空格键" class="headerlink" title="怎么打出tab键，空行和空格键"></a>怎么打出tab键，空行和空格键</h3><p>空格: <code>&amp;nbsp;</code>    tab: <code>&amp;emsp;</code><br>示例:<br>你&nbsp;好&emsp;啊<br>在代码块中，直接用tab键即可。</p>
+]]></content>
+      <categories>
+        <category>Common Sense</category>
+      </categories>
+      <tags>
+        <tag>Markdown Syntax</tag>
+        <tag>Markdown语法</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>练习2.9 在求对二的补码时，表达式 x &amp;= (x - 1) 可以删除 x 中最右边值为 1 的一个二进制位，请解释这样做的道理。用这一方法重写bitcount函数，以加快其执行速度。</title>
+    <url>/%E7%BB%83%E4%B9%A02-9-%E5%9C%A8%E6%B1%82%E5%AF%B9%E4%BA%8C%E7%9A%84%E8%A1%A5%E7%A0%81%E6%97%B6%EF%BC%8C%E8%A1%A8%E8%BE%BE%E5%BC%8F-x-x-1-%E5%8F%AF%E4%BB%A5%E5%88%A0%E9%99%A4-x-%E4%B8%AD%E6%9C%80%E5%8F%B3%E8%BE%B9%E5%80%BC%E4%B8%BA-1-%E7%9A%84%E4%B8%80%E4%B8%AA%E4%BA%8C%E8%BF%9B%E5%88%B6%E4%BD%8D%EF%BC%8C%E8%AF%B7%E8%A7%A3%E9%87%8A%E8%BF%99%E6%A0%B7%E5%81%9A%E7%9A%84%E9%81%93%E7%90%86%E3%80%82%E7%94%A8%E8%BF%99%E4%B8%80%E6%96%B9%E6%B3%95%E9%87%8D%E5%86%99bitcount%E5%87%BD%E6%95%B0%EF%BC%8C%E4%BB%A5%E5%8A%A0%E5%BF%AB%E5%85%B6%E6%89%A7%E8%A1%8C%E9%80%9F%E5%BA%A6%E3%80%82/</url>
+    <content><![CDATA[<p>题目分析：题目说可以删除x中最右边的值为1的一个二进制位，不是当x最右边一位为1时，删除这一位，而是说，将x中从右边数第一个为1的二进制位变成0。<br>具体分析如下图：</p>
+<a id="more"></a>
+<p><img src="../picture/practice_2_9.png" alt="题目分析"></p>
+<p>参考代码实现：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line"></span><br><span class="line">int bitcount(unsigned x)</span><br><span class="line">&#123;</span><br><span class="line">	int b &#x3D; 0;</span><br><span class="line">	while (x !&#x3D; 0)</span><br><span class="line">	&#123;</span><br><span class="line">		x &amp;&#x3D; x - 1;</span><br><span class="line">		b++;</span><br><span class="line">	&#125;</span><br><span class="line">	return b;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">	unsigned x &#x3D; 8;</span><br><span class="line">	int n;</span><br><span class="line">	n &#x3D; bitcount(x);</span><br><span class="line">	printf(&quot;%d\n&quot;, n);</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>C</category>
+      </categories>
+      <tags>
+        <tag>Bitwise Operation</tag>
+        <tag>按位运算</tag>
+        <tag>C</tag>
       </tags>
   </entry>
   <entry>
