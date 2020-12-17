@@ -20,16 +20,22 @@
     var CONFIG = {"hostname":"brian-wang6.github.io","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":true},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Brian Wang&#39;s Blog">
-<meta property="og:url" content="https://brian-wang6.github.io/tags/Markdown%E8%AF%AD%E6%B3%95/index.html">
+  <meta name="description" content="在优化基于gstreamer架构的网络摄像头应用时，为了方便添加属性，我使用了struct。具体struct定义如下，定义了struct cache_data，其中包含了两个int类型的变量，一个vector容器。 123456typedef struct cache_data&amp;#123;  int time;  int detect_frame;  vector&lt;vector&lt;flo">
+<meta property="og:type" content="article">
+<meta property="og:title" content="在结构体中使用vector，如何初始化结构体">
+<meta property="og:url" content="https://brian-wang6.github.io/%E5%9C%A8%E7%BB%93%E6%9E%84%E4%BD%93%E4%B8%AD%E4%BD%BF%E7%94%A8vector%EF%BC%8C%E5%A6%82%E4%BD%95%E5%88%9D%E5%A7%8B%E5%8C%96%E7%BB%93%E6%9E%84%E4%BD%93/index.html">
 <meta property="og:site_name" content="Brian Wang&#39;s Blog">
+<meta property="og:description" content="在优化基于gstreamer架构的网络摄像头应用时，为了方便添加属性，我使用了struct。具体struct定义如下，定义了struct cache_data，其中包含了两个int类型的变量，一个vector容器。 123456typedef struct cache_data&amp;#123;  int time;  int detect_frame;  vector&lt;vector&lt;flo">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-12-17T14:22:26.000Z">
+<meta property="article:modified_time" content="2020-12-17T14:27:32.044Z">
 <meta property="article:author" content="Brian Wang">
-<meta property="article:tag" content="blog, 博客, Brian">
+<meta property="article:tag" content="C">
+<meta property="article:tag" content="vector">
+<meta property="article:tag" content="struct">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://brian-wang6.github.io/tags/Markdown%E8%AF%AD%E6%B3%95/">
+<link rel="canonical" href="https://brian-wang6.github.io/%E5%9C%A8%E7%BB%93%E6%9E%84%E4%BD%93%E4%B8%AD%E4%BD%BF%E7%94%A8vector%EF%BC%8C%E5%A6%82%E4%BD%95%E5%88%9D%E5%A7%8B%E5%8C%96%E7%BB%93%E6%9E%84%E4%BD%93/">
 
 
 <script id="page-configurations">
@@ -37,12 +43,12 @@
   CONFIG.page = {
     sidebar: "",
     isHome : false,
-    isPost : false,
+    isPost : true,
     lang   : 'en'
   };
 </script>
 
-  <title>Tag: Markdown语法 | Brian Wang's Blog</title>
+  <title>在结构体中使用vector，如何初始化结构体 | Brian Wang's Blog</title>
   
 
 
@@ -183,51 +189,98 @@
         <div class="content-wrap">
           
 
-          <div class="content tag">
+          <div class="content post posts-expand">
             
 
+    
   
   
-  
-  <div class="post-block">
-    <div class="posts-collapse">
-      <div class="collection-title">
-        <h2 class="collection-header">Markdown语法
-          <small>Tag</small>
-        </h2>
-      </div>
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://brian-wang6.github.io/%E5%9C%A8%E7%BB%93%E6%9E%84%E4%BD%93%E4%B8%AD%E4%BD%BF%E7%94%A8vector%EF%BC%8C%E5%A6%82%E4%BD%95%E5%88%9D%E5%A7%8B%E5%8C%96%E7%BB%93%E6%9E%84%E4%BD%93/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Brian Wang">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Brian Wang's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          在结构体中使用vector，如何初始化结构体
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-12-17 22:22:26 / Modified: 22:27:32" itemprop="dateCreated datePublished" datetime="2020-12-17T22:22:26+08:00">2020-12-17</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/C/" itemprop="url" rel="index"><span itemprop="name">C</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-    <div class="collection-year">
-      <span class="collection-header">2020</span>
+        <p>在优化基于gstreamer架构的网络摄像头应用时，为了方便添加属性，我使用了struct。具体struct定义如下，定义了struct cache_data，其中包含了两个int类型的变量，一个vector容器。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">typedef struct cache_data</span><br><span class="line">&#123;</span><br><span class="line">  int time;</span><br><span class="line">  int detect_frame;</span><br><span class="line">  vector&lt;vector&lt;float&gt;&gt; res_keep;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<p>但在我具体使用这个结构体的时候，对vector的赋值出现问题。原始代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cache_data *boxes_cache &#x3D; (cache_data *)malloc(sizeof(cache_data));</span><br><span class="line">boxes_cache -&gt; time &#x3D; 0;</span><br><span class="line">boxes_cache -&gt; res_keep &#x3D; vector&lt;vector&lt;float&gt;&gt;();	&#x2F;&#x2F;发生错误，segmentation fault</span><br></pre></td></tr></table></figure>
+<p>运行到对结构体中的容器初始化就会产生段错误，所以推测内存错误。之后查资料以后得知，malloc没有调用vector的构造函数，所以vector的内存没分配。<br>此时可以使用new，这个运算符会自己完成malloc，结构体构造，错误检查等工作。容器的容量是会在使用中自适应调整的，不要去malloc一块地方。<br>改正后的可运行代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cache_data *boxes_cache &#x3D; new cache_data;</span><br><span class="line">boxes_cache-&gt;time &#x3D; 0;</span><br><span class="line">boxes_cache-&gt;res_keep &#x3D; vector&lt;vector&lt;float&gt;&gt;();</span><br></pre></td></tr></table></figure>
+<p>在网上查到malloc和new的区别：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">malloc&#x2F;new和free&#x2F;delete</span><br><span class="line">1. malloc和free是标准库函数，支持覆盖；new和delete是运算符，并且支持重载。</span><br><span class="line">2. malloc仅仅分配内存空间，free仅仅回收空间，不具备调用构造函数和析构函数功能，用malloc分配空间存储类的对象存在风险；3. new和delete除了分配回收功能外，还会调用构造函数和析构函数。</span><br><span class="line">4. malloc和free返回的是void类型指针（必须进行类型转换），new和delete返回的是具体类型指针。</span><br><span class="line">5. free和delete对应。当delete一个对象数组时，delete只删除了一个，需要使用delete[]。</span><br></pre></td></tr></table></figure>
     </div>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+    
+    
+    
 
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-11-09T21:22:17+08:00"
-              content="2020-11-09">
-          11-09
-        </time>
-      </div>
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/C/" rel="tag"># C</a>
+              <a href="/tags/vector/" rel="tag"># vector</a>
+              <a href="/tags/struct/" rel="tag"># struct</a>
+          </div>
 
-      <div class="post-title">
-          <a class="post-title-link" href="/Markdown-Syntax/" itemprop="url">
-            <span itemprop="name">Markdown Syntax</span>
-          </a>
-      </div>
+        
 
-    </header>
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/%E4%B8%A4%E7%A7%8D%E5%AE%9A%E4%B9%89%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E5%8C%BA%E5%88%AB/" rel="prev" title="两种定义字符串的区别">
+      <i class="fa fa-chevron-left"></i> 两种定义字符串的区别
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
   </article>
-
-    </div>
-  </div>
   
   
-  
-
   
 
 

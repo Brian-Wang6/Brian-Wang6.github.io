@@ -38,24 +38,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Linux命令</title>
-    <url>/Linuxx%E5%91%BD%E4%BB%A4/</url>
-    <content><![CDATA[<ol>
-<li>echo<br>用来将字符串输出到终端上，通常在shell脚本和批处理中使用，以将状态信息输出到屏幕或文件中。<br><code>echo it is a test</code>输出为<code>it is a test</code>。</li>
-<li>touch<br>Linux touch命令用于修改文件或者目录的时间属性，包括存取时间和更改时间。若文件不存在，系统会建立一个新的文件。<br>ls -l 可以显示档案的时间记录。<br><code>touch testfile    #修改文件的时间属性为当前系统时间，如果文件不存在则生成文件</code></li>
-</ol>
-<a id="more"></a>]]></content>
-      <categories>
-        <category>Linux</category>
-      </categories>
-      <tags>
-        <tag>Linux</tag>
-        <tag>command</tag>
-        <tag>shell</tag>
-        <tag>命令</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Makefile Tutorial</title>
     <url>/Makefile-Tutorial/</url>
     <content><![CDATA[<h2 id="有一篇总结的非常全面的文章：Makefile运用"><a href="#有一篇总结的非常全面的文章：Makefile运用" class="headerlink" title="有一篇总结的非常全面的文章：Makefile运用"></a>有一篇总结的非常全面的文章：<a href="https://seisman.github.io/how-to-write-makefile/introduction.html">Makefile运用</a></h2><h3 id="一，显式规则"><a href="#一，显式规则" class="headerlink" title="一，显式规则"></a>一，显式规则</h3><ol>
@@ -78,10 +60,28 @@
         <category>Linux</category>
       </categories>
       <tags>
-        <tag>Linux</tag>
         <tag>Makefile</tag>
+        <tag>Linux</tag>
         <tag>gcc</tag>
         <tag>g++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Linux命令</title>
+    <url>/Linuxx%E5%91%BD%E4%BB%A4/</url>
+    <content><![CDATA[<ol>
+<li>echo<br>用来将字符串输出到终端上，通常在shell脚本和批处理中使用，以将状态信息输出到屏幕或文件中。<br><code>echo it is a test</code>输出为<code>it is a test</code>。</li>
+<li>touch<br>Linux touch命令用于修改文件或者目录的时间属性，包括存取时间和更改时间。若文件不存在，系统会建立一个新的文件。<br>ls -l 可以显示档案的时间记录。<br><code>touch testfile    #修改文件的时间属性为当前系统时间，如果文件不存在则生成文件</code></li>
+</ol>
+<a id="more"></a>]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+        <tag>command</tag>
+        <tag>shell</tag>
+        <tag>命令</tag>
       </tags>
   </entry>
   <entry>
@@ -117,6 +117,27 @@
         <tag>字符串</tag>
         <tag>指针</tag>
         <tag>pointer</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>在结构体中使用vector，如何初始化结构体</title>
+    <url>/%E5%9C%A8%E7%BB%93%E6%9E%84%E4%BD%93%E4%B8%AD%E4%BD%BF%E7%94%A8vector%EF%BC%8C%E5%A6%82%E4%BD%95%E5%88%9D%E5%A7%8B%E5%8C%96%E7%BB%93%E6%9E%84%E4%BD%93/</url>
+    <content><![CDATA[<p>在优化基于gstreamer架构的网络摄像头应用时，为了方便添加属性，我使用了struct。具体struct定义如下，定义了struct cache_data，其中包含了两个int类型的变量，一个vector容器。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">typedef struct cache_data</span><br><span class="line">&#123;</span><br><span class="line">  int time;</span><br><span class="line">  int detect_frame;</span><br><span class="line">  vector&lt;vector&lt;float&gt;&gt; res_keep;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<p>但在我具体使用这个结构体的时候，对vector的赋值出现问题。原始代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">cache_data *boxes_cache &#x3D; (cache_data *)malloc(sizeof(cache_data));</span><br><span class="line">boxes_cache -&gt; time &#x3D; 0;</span><br><span class="line">boxes_cache -&gt; res_keep &#x3D; vector&lt;vector&lt;float&gt;&gt;();	&#x2F;&#x2F;发生错误，segmentation fault</span><br></pre></td></tr></table></figure>
+<p>运行到对结构体中的容器初始化就会产生段错误，所以推测内存错误。之后查资料以后得知，malloc没有调用vector的构造函数，所以vector的内存没分配。<br>此时可以使用new，这个运算符会自己完成malloc，结构体构造，错误检查等工作。容器的容量是会在使用中自适应调整的，不要去malloc一块地方。<br>改正后的可运行代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">cache_data *boxes_cache &#x3D; new cache_data;</span><br><span class="line">boxes_cache-&gt;time &#x3D; 0;</span><br><span class="line">boxes_cache-&gt;res_keep &#x3D; vector&lt;vector&lt;float&gt;&gt;();</span><br></pre></td></tr></table></figure>
+<p>在网上查到malloc和new的区别：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">malloc&#x2F;new和free&#x2F;delete</span><br><span class="line">1. malloc和free是标准库函数，支持覆盖；new和delete是运算符，并且支持重载。</span><br><span class="line">2. malloc仅仅分配内存空间，free仅仅回收空间，不具备调用构造函数和析构函数功能，用malloc分配空间存储类的对象存在风险；3. new和delete除了分配回收功能外，还会调用构造函数和析构函数。</span><br><span class="line">4. malloc和free返回的是void类型指针（必须进行类型转换），new和delete返回的是具体类型指针。</span><br><span class="line">5. free和delete对应。当delete一个对象数组时，delete只删除了一个，需要使用delete[]。</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>C</category>
+      </categories>
+      <tags>
+        <tag>C</tag>
+        <tag>vector</tag>
+        <tag>struct</tag>
       </tags>
   </entry>
   <entry>
