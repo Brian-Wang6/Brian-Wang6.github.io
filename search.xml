@@ -38,23 +38,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Markdown Syntax</title>
-    <url>/Markdown-Syntax/</url>
-    <content><![CDATA[<h3 id="Basic-Usage"><a href="#Basic-Usage" class="headerlink" title="Basic Usage"></a>Basic Usage</h3><p>Since I will start my blog from today, markdown syntax is quite important to draft blogs. I searched online and found that there is a blog that indicate the basic usage of the syntax and it’s easy to understand. The link is as below:</p>
-<p><strong><a href="https://www.jianshu.com/p/191d1e21f7ed">Basic Usage</a></strong></p>
-<a id="more"></a>
-
-<h3 id="怎么打出tab键，空行和空格键"><a href="#怎么打出tab键，空行和空格键" class="headerlink" title="怎么打出tab键，空行和空格键"></a>怎么打出tab键，空行和空格键</h3><p>空格: <code>&amp;nbsp;</code>    tab: <code>&amp;emsp;</code><br>示例:<br>你&nbsp;好&emsp;啊<br>在代码块中，直接用tab键即可。</p>
-]]></content>
-      <categories>
-        <category>Common Sense</category>
-      </categories>
-      <tags>
-        <tag>Markdown Syntax</tag>
-        <tag>Markdown语法</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Linux命令</title>
     <url>/Linuxx%E5%91%BD%E4%BB%A4/</url>
     <content><![CDATA[<ol>
@@ -70,6 +53,23 @@
         <tag>command</tag>
         <tag>shell</tag>
         <tag>命令</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Markdown Syntax</title>
+    <url>/Markdown-Syntax/</url>
+    <content><![CDATA[<h3 id="Basic-Usage"><a href="#Basic-Usage" class="headerlink" title="Basic Usage"></a>Basic Usage</h3><p>Since I will start my blog from today, markdown syntax is quite important to draft blogs. I searched online and found that there is a blog that indicate the basic usage of the syntax and it’s easy to understand. The link is as below:</p>
+<p><strong><a href="https://www.jianshu.com/p/191d1e21f7ed">Basic Usage</a></strong></p>
+<a id="more"></a>
+
+<h3 id="怎么打出tab键，空行和空格键"><a href="#怎么打出tab键，空行和空格键" class="headerlink" title="怎么打出tab键，空行和空格键"></a>怎么打出tab键，空行和空格键</h3><p>空格: <code>&amp;nbsp;</code>    tab: <code>&amp;emsp;</code><br>示例:<br>你&nbsp;好&emsp;啊<br>在代码块中，直接用tab键即可。</p>
+]]></content>
+      <categories>
+        <category>Common Sense</category>
+      </categories>
+      <tags>
+        <tag>Markdown Syntax</tag>
+        <tag>Markdown语法</tag>
       </tags>
   </entry>
   <entry>
@@ -137,6 +137,27 @@
       </tags>
   </entry>
   <entry>
+    <title>在结构体中使用vector，如何初始化结构体</title>
+    <url>/%E5%9C%A8%E7%BB%93%E6%9E%84%E4%BD%93%E4%B8%AD%E4%BD%BF%E7%94%A8vector%EF%BC%8C%E5%A6%82%E4%BD%95%E5%88%9D%E5%A7%8B%E5%8C%96%E7%BB%93%E6%9E%84%E4%BD%93/</url>
+    <content><![CDATA[<p>在优化基于gstreamer架构的网络摄像头应用时，为了方便添加属性，我使用了struct。具体struct定义如下，定义了struct cache_data，其中包含了两个int类型的变量，一个vector容器。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">typedef struct cache_data</span><br><span class="line">&#123;</span><br><span class="line">  int time;</span><br><span class="line">  int detect_frame;</span><br><span class="line">  vector&lt;vector&lt;float&gt;&gt; res_keep;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<p>但在我具体使用这个结构体的时候，对vector的赋值出现问题。原始代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">cache_data *boxes_cache &#x3D; (cache_data *)malloc(sizeof(cache_data));</span><br><span class="line">boxes_cache -&gt; time &#x3D; 0;</span><br><span class="line">boxes_cache -&gt; res_keep &#x3D; vector&lt;vector&lt;float&gt;&gt;();	&#x2F;&#x2F;发生错误，segmentation fault</span><br></pre></td></tr></table></figure>
+<p>运行到对结构体中的容器初始化就会产生段错误，所以推测内存错误。之后查资料以后得知，malloc没有调用vector的构造函数，所以vector的内存没分配。<br>此时可以使用new，这个运算符会自己完成malloc，结构体构造，错误检查等工作。容器的容量是会在使用中自适应调整的，不要去malloc一块地方。<br>改正后的可运行代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">cache_data *boxes_cache &#x3D; new cache_data;</span><br><span class="line">boxes_cache-&gt;time &#x3D; 0;</span><br><span class="line">boxes_cache-&gt;res_keep &#x3D; vector&lt;vector&lt;float&gt;&gt;();</span><br></pre></td></tr></table></figure>
+<p>在网上查到malloc和new的区别：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">malloc&#x2F;new和free&#x2F;delete</span><br><span class="line">1. malloc和free是标准库函数，支持覆盖；new和delete是运算符，并且支持重载。</span><br><span class="line">2. malloc仅仅分配内存空间，free仅仅回收空间，不具备调用构造函数和析构函数功能，用malloc分配空间存储类的对象存在风险；3. new和delete除了分配回收功能外，还会调用构造函数和析构函数。</span><br><span class="line">4. malloc和free返回的是void类型指针（必须进行类型转换），new和delete返回的是具体类型指针。</span><br><span class="line">5. free和delete对应。当delete一个对象数组时，delete只删除了一个，需要使用delete[]。</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>C</category>
+      </categories>
+      <tags>
+        <tag>C</tag>
+        <tag>vector</tag>
+        <tag>struct</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>练习2.6 编写一个函数setbits(x, p ,n, y)，该函数返回对x执行下列操作后的结果值: 将x中从第p位开始的n个(二进制)位设置为y中最右边n位的值，x的其余各位保持不变。</title>
     <url>/%E7%BB%83%E4%B9%A02-6-%E7%BC%96%E5%86%99%E4%B8%80%E4%B8%AA%E5%87%BD%E6%95%B0setbits-x-p-n-y-%EF%BC%8C%E8%AF%A5%E5%87%BD%E6%95%B0%E8%BF%94%E5%9B%9E%E5%AF%B9x%E6%89%A7%E8%A1%8C%E4%B8%8B%E5%88%97%E6%93%8D%E4%BD%9C%E5%90%8E%E7%9A%84%E7%BB%93%E6%9E%9C%E5%80%BC-%E5%B0%86x%E4%B8%AD%E4%BB%8E%E7%AC%ACp%E4%BD%8D%E5%BC%80%E5%A7%8B%E7%9A%84n%E4%B8%AA-%E4%BA%8C%E8%BF%9B%E5%88%B6-%E4%BD%8D%E8%AE%BE%E7%BD%AE%E4%B8%BAy%E4%B8%AD%E6%9C%80%E5%8F%B3%E8%BE%B9n%E4%BD%8D%E7%9A%84%E5%80%BC%EF%BC%8Cx%E7%9A%84%E5%85%B6%E4%BD%99%E5%90%84%E4%BD%8D%E4%BF%9D%E6%8C%81%E4%B8%8D%E5%8F%98%E3%80%82/</url>
     <content><![CDATA[<p>题目分析：<br>X: xxx…xnnnx…xxx<br>Y: yy…………..ynnn<br>要变成这样的效果，我们需要对x中n位清零，把y中最右边n位以外的位都清零并左移到第p位处，然后进行or操作。</p>
@@ -159,6 +180,21 @@
       </tags>
   </entry>
   <entry>
+    <title>软件设计模式的种类</title>
+    <url>/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E7%9A%84%E7%A7%8D%E7%B1%BB/</url>
+    <content><![CDATA[<h3 id="软件设计模式的种类"><a href="#软件设计模式的种类" class="headerlink" title="软件设计模式的种类"></a>软件设计模式的种类</h3><p>创建型模式：如何创建对象；（<strong>单例模式</strong>，<strong>工厂方法模式</strong>，<strong>抽象工厂模式</strong>，<strong>简单工厂模式</strong>，原型模式，建造者模式）</p>
+<a id="more"></a>
+<p>结构型模式：如何实现类或对象的组合；（<strong>适配器模式</strong>，<strong>外观模式</strong>，<strong>装饰模式</strong>，<strong>代理模式</strong>，桥接模式，组合模式，享元模式）<br>行为型模式：类或对象怎样交互以及怎样分配职责。（<strong>观察者模式</strong>，<strong>模板方法模式</strong>，<strong>策略模式</strong>，<strong>命令模式</strong>，状态模式，中介者模式，备忘录模式，迭代器模式，解释器模式）</p>
+]]></content>
+      <categories>
+        <category>Design Pattern</category>
+      </categories>
+      <tags>
+        <tag>设计模式种类</tag>
+        <tag>design pattern types</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>练习2.9 在求对二的补码时，表达式 x &amp;= (x - 1) 可以删除 x 中最右边值为 1 的一个二进制位，请解释这样做的道理。用这一方法重写bitcount函数，以加快其执行速度。</title>
     <url>/%E7%BB%83%E4%B9%A02-9-%E5%9C%A8%E6%B1%82%E5%AF%B9%E4%BA%8C%E7%9A%84%E8%A1%A5%E7%A0%81%E6%97%B6%EF%BC%8C%E8%A1%A8%E8%BE%BE%E5%BC%8F-x-x-1-%E5%8F%AF%E4%BB%A5%E5%88%A0%E9%99%A4-x-%E4%B8%AD%E6%9C%80%E5%8F%B3%E8%BE%B9%E5%80%BC%E4%B8%BA-1-%E7%9A%84%E4%B8%80%E4%B8%AA%E4%BA%8C%E8%BF%9B%E5%88%B6%E4%BD%8D%EF%BC%8C%E8%AF%B7%E8%A7%A3%E9%87%8A%E8%BF%99%E6%A0%B7%E5%81%9A%E7%9A%84%E9%81%93%E7%90%86%E3%80%82%E7%94%A8%E8%BF%99%E4%B8%80%E6%96%B9%E6%B3%95%E9%87%8D%E5%86%99bitcount%E5%87%BD%E6%95%B0%EF%BC%8C%E4%BB%A5%E5%8A%A0%E5%BF%AB%E5%85%B6%E6%89%A7%E8%A1%8C%E9%80%9F%E5%BA%A6%E3%80%82/</url>
     <content><![CDATA[<p>题目分析：题目说可以删除x中最右边的值为1的一个二进制位，不是当x最右边一位为1时，删除这一位，而是说，将x中从右边数第一个为1的二进制位变成0。<br>具体分析如下图：</p>
@@ -173,42 +209,6 @@
         <tag>Bitwise Operation</tag>
         <tag>按位运算</tag>
         <tag>C</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>在结构体中使用vector，如何初始化结构体</title>
-    <url>/%E5%9C%A8%E7%BB%93%E6%9E%84%E4%BD%93%E4%B8%AD%E4%BD%BF%E7%94%A8vector%EF%BC%8C%E5%A6%82%E4%BD%95%E5%88%9D%E5%A7%8B%E5%8C%96%E7%BB%93%E6%9E%84%E4%BD%93/</url>
-    <content><![CDATA[<p>在优化基于gstreamer架构的网络摄像头应用时，为了方便添加属性，我使用了struct。具体struct定义如下，定义了struct cache_data，其中包含了两个int类型的变量，一个vector容器。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">typedef struct cache_data</span><br><span class="line">&#123;</span><br><span class="line">  int time;</span><br><span class="line">  int detect_frame;</span><br><span class="line">  vector&lt;vector&lt;float&gt;&gt; res_keep;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<a id="more"></a>
-<p>但在我具体使用这个结构体的时候，对vector的赋值出现问题。原始代码如下：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">cache_data *boxes_cache &#x3D; (cache_data *)malloc(sizeof(cache_data));</span><br><span class="line">boxes_cache -&gt; time &#x3D; 0;</span><br><span class="line">boxes_cache -&gt; res_keep &#x3D; vector&lt;vector&lt;float&gt;&gt;();	&#x2F;&#x2F;发生错误，segmentation fault</span><br></pre></td></tr></table></figure>
-<p>运行到对结构体中的容器初始化就会产生段错误，所以推测内存错误。之后查资料以后得知，malloc没有调用vector的构造函数，所以vector的内存没分配。<br>此时可以使用new，这个运算符会自己完成malloc，结构体构造，错误检查等工作。容器的容量是会在使用中自适应调整的，不要去malloc一块地方。<br>改正后的可运行代码如下：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">cache_data *boxes_cache &#x3D; new cache_data;</span><br><span class="line">boxes_cache-&gt;time &#x3D; 0;</span><br><span class="line">boxes_cache-&gt;res_keep &#x3D; vector&lt;vector&lt;float&gt;&gt;();</span><br></pre></td></tr></table></figure>
-<p>在网上查到malloc和new的区别：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">malloc&#x2F;new和free&#x2F;delete</span><br><span class="line">1. malloc和free是标准库函数，支持覆盖；new和delete是运算符，并且支持重载。</span><br><span class="line">2. malloc仅仅分配内存空间，free仅仅回收空间，不具备调用构造函数和析构函数功能，用malloc分配空间存储类的对象存在风险；3. new和delete除了分配回收功能外，还会调用构造函数和析构函数。</span><br><span class="line">4. malloc和free返回的是void类型指针（必须进行类型转换），new和delete返回的是具体类型指针。</span><br><span class="line">5. free和delete对应。当delete一个对象数组时，delete只删除了一个，需要使用delete[]。</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>C</category>
-      </categories>
-      <tags>
-        <tag>C</tag>
-        <tag>vector</tag>
-        <tag>struct</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>软件设计模式的种类</title>
-    <url>/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E7%9A%84%E7%A7%8D%E7%B1%BB/</url>
-    <content><![CDATA[<h3 id="软件设计模式的种类"><a href="#软件设计模式的种类" class="headerlink" title="软件设计模式的种类"></a>软件设计模式的种类</h3><p>创建型模式：如何创建对象；（<strong>单例模式</strong>，<strong>工厂方法模式</strong>，<strong>抽象工厂模式</strong>，<strong>简单工厂模式</strong>，原型模式，建造者模式）</p>
-<a id="more"></a>
-<p>结构型模式：如何实现类或对象的组合；（<strong>适配器模式</strong>，<strong>外观模式</strong>，<strong>装饰模式</strong>，<strong>代理模式</strong>，桥接模式，组合模式，享元模式）<br>行为型模式：类或对象怎样交互以及怎样分配职责。（<strong>观察者模式</strong>，<strong>模板方法模式</strong>，<strong>策略模式</strong>，<strong>命令模式</strong>，状态模式，中介者模式，备忘录模式，迭代器模式，解释器模式）</p>
-]]></content>
-      <categories>
-        <category>Design Pattern</category>
-      </categories>
-      <tags>
-        <tag>设计模式种类</tag>
-        <tag>design pattern types</tag>
       </tags>
   </entry>
 </search>
